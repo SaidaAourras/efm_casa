@@ -32,12 +32,16 @@ Route::middleware('auth')->group(function () {
     Route::controller(EventController::class)->group(function () {
         Route::prefix('/events')->group(function () {
             Route::name('events.')->group(function () {
-                Route::get('/',  'index')->name('index');
+                Route::get('/',  'userIndex')->name('index');
                 Route::get('/create',  'create')->name('create');
                 Route::post('/store',  'store')->name('store');
             });
         });
     });
+});
+
+Route::middleware(['auth', 'is_admin'])->group(function () {
+    Route::get('/admin/events', [EventController::class, 'adminIndex'])->name('admin.index');
 });
 
 require __DIR__ . '/auth.php';

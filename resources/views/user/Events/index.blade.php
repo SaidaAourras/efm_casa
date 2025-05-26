@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            Liste des événements
+            Mes événements
         </h2>
     </x-slot>
 
@@ -11,11 +11,21 @@
                 {{ session('success') }}
             </div>
         @endif
+        <div class="flex justify-between mb-4">
+            <div class="flex S mb-4">
+                <form method="GET">
+                    <input type="date" name="date_debut" value="{{ request('date_debut') }}">
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded">Filtrer</button>
+                </form>
 
-        <div class="flex justify-end mb-4">
-            <a href="{{ route('events.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-                Ajouter un événement
-            </a>
+            </div>
+            <div class="flex justify-end mb-4">
+                <a href="{{ route('events.create') }}"
+                    class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                    Ajouter un événement
+                </a>
+            </div>
+
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

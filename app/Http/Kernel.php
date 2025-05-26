@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\checkAuth;
+use App\Http\Middleware\IsAdmin;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -15,6 +16,9 @@ class Kernel extends HttpKernel
      * @var array<int, class-string|string>
      */
 
+    protected $routeMiddleware = [
+        'is_admin' => IsAdmin::class
+    ];
     protected $middleware = [
         // \App\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\TrustProxies::class,
